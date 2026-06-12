@@ -1,10 +1,10 @@
-# Nestora Interiors — Frontend (Next.js)
+# K6 Interiors — Frontend (Next.js)
 
 Marketing site for the interior-design business. Built with **Next.js 16 (App
 Router) + TypeScript + Tailwind v4 + Framer Motion**. Talks to the Django REST
 backend in `../K6_backend`.
 
-> Branding ("Nestora", emerald + brass palette, copy, layout) is original.
+> Branding ("K6 Interiors", emerald + brass palette, copy, layout) is original.
 > Use the reference site only for inspiration, never copy assets/text.
 
 ## Pages

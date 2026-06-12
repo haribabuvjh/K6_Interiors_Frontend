@@ -4,8 +4,8 @@ import Portfolio from "@/components/Portfolio";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Portfolio — Nestora Interiors",
-  description: "A gallery of kitchens, wardrobes and living spaces by Nestora.",
+  title: "Portfolio — K6 Interiors",
+  description: "A gallery of kitchens, wardrobes and living spaces by K6 Interiors.",
 };
 
 export default async function PortfolioPage() {

@@ -54,7 +54,7 @@ type Paginated<T> = { count: number; results: T[] };
 
 async function getJSON<T>(path: string): Promise<T | null> {
   try {
-    const res = await fetch(`${API_BASE}/api${path}`, { cache: "no-store" });
+    const res = await fetch(`${API_BASE}/api/k6${path}`, { cache: "no-store" });
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
@@ -106,7 +106,7 @@ export type SubmitResult =
 
 async function postLead(path: string, payload: LeadPayload): Promise<SubmitResult> {
   try {
-    const res = await fetch(`${API_BASE}/api${path}`, {
+    const res = await fetch(`${API_BASE}/api/k6${path}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

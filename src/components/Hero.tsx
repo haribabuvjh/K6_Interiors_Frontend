@@ -36,7 +36,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.12 }}
             className="mt-5 max-w-md text-lg text-muted"
           >
-            From modular kitchens to wardrobes and living rooms, Nestora designs,
+            From modular kitchens to wardrobes and living rooms, K6 Interiors designs,
             builds and installs your space — on time and on budget.
           </motion.p>
 

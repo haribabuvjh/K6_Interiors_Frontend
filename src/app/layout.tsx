@@ -16,9 +16,9 @@ const body = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Nestora Interiors — Interiors that feel like home",
+  title: "K6 Interiors — Interiors that feel like home",
   description:
-    "Nestora designs and builds modular kitchens, wardrobes, and full-home interiors. Book a free consultation today.",
+    "K6 Interiors designs and builds modular kitchens, wardrobes, and full-home interiors. Book a free consultation today.",
 };
 
 export default function RootLayout({

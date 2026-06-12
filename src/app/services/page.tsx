@@ -5,7 +5,7 @@ import HowItWorks from "@/components/HowItWorks";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Services — Nestora Interiors",
+  title: "Services — K6 Interiors",
   description: "Modular kitchens, wardrobes, living rooms and full-home interiors.",
 };
 

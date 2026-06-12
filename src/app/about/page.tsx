@@ -3,7 +3,7 @@ import Reveal from "@/components/Reveal";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "About — Nestora Interiors",
+  title: "About — K6 Interiors",
   description: "Who we are and how we design interiors that feel like home.",
 };
 
@@ -20,7 +20,7 @@ export default function AboutPage() {
       <section className="bg-brand">
         <div className="mx-auto max-w-6xl px-5 py-16">
           <h1 className="font-display text-4xl font-semibold text-cream sm:text-5xl">
-            About Nestora
+            About K6 Interiors
           </h1>
           <p className="mt-3 max-w-xl text-cream/80">
             We&apos;re a team of designers and makers turning houses into homes.
@@ -35,7 +35,7 @@ export default function AboutPage() {
               Interiors, done the right way
             </h2>
             <p className="mt-4 text-muted">
-              Nestora was built on a simple belief: great interiors shouldn&apos;t be
+              K6 Interiors was built on a simple belief: great interiors shouldn&apos;t be
               stressful or unpredictable. We bring design, manufacturing and
               installation under one roof, so you get a single accountable team
               from first idea to final handover.

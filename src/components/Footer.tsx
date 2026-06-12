@@ -6,11 +6,11 @@ export default function Footer() {
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent font-display text-lg font-semibold text-brand">
-              N
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent font-display text-base font-bold tracking-tight text-brand">
+              K6
             </span>
             <span className="font-display text-xl font-semibold text-cream">
-              Nestora
+              K6 Interiors
             </span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-cream/70">
@@ -49,7 +49,7 @@ export default function Footer() {
             Get in touch
           </h4>
           <ul className="mt-4 space-y-2 text-sm text-cream/80">
-            <li>hello@nestora.example</li>
+            <li>hello@k6interiors.com</li>
             <li>+91 90000 00000</li>
             <li>Chennai · Bengaluru · Hyderabad</li>
           </ul>
@@ -58,7 +58,7 @@ export default function Footer() {
 
       <div className="border-t border-cream/15">
         <div className="mx-auto max-w-6xl px-5 py-5 text-xs text-cream/60">
-          © {new Date().getFullYear()} Nestora Interiors. All rights reserved.
+          © {new Date().getFullYear()} K6 Interiors. All rights reserved.
         </div>
       </div>
     </footer>

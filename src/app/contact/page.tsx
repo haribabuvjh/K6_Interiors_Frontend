@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LeadForm from "@/components/LeadForm";
 
 export const metadata: Metadata = {
-  title: "Contact — Nestora Interiors",
+  title: "Contact — K6 Interiors",
   description: "Book a free consultation or send us a message.",
 };
 
@@ -42,7 +42,7 @@ export default function ContactPage() {
               </h3>
               <ul className="mt-4 space-y-3 text-sm text-muted">
                 <li><span className="font-medium text-ink">Phone:</span> +91 90000 00000</li>
-                <li><span className="font-medium text-ink">Email:</span> hello@nestora.example</li>
+                <li><span className="font-medium text-ink">Email:</span> hello@k6interiors.com</li>
                 <li><span className="font-medium text-ink">Cities:</span> Chennai · Bengaluru · Hyderabad</li>
                 <li><span className="font-medium text-ink">Hours:</span> Mon–Sat, 10am – 7pm</li>
               </ul>

@@ -39,7 +39,7 @@ export default function Portfolio({ projects }: { projects: Project[] }) {
       <SectionHeading
         eyebrow="Our work"
         title="A glimpse of recent projects"
-        subtitle="Real homes, designed and built by Nestora."
+        subtitle="Real homes, designed and built by K6 Interiors."
       />
 
       {hasReal && (

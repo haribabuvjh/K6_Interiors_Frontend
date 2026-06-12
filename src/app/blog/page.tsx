@@ -4,7 +4,7 @@ import { getPosts } from "@/lib/api";
 import CtaBand from "@/components/CtaBand";
 
 export const metadata: Metadata = {
-  title: "Blog — Nestora Interiors",
+  title: "Blog — K6 Interiors",
   description:
     "Interior design tips, budgeting guides and ideas for kitchens, wardrobes and living spaces.",
 };
