@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/*
+  Nestora Interiors — brand theme.
+  Original palette (deep emerald + warm brass on cream). Not copied from any
+  reference site; tweak these tokens to re-skin the whole site.
+*/
+@theme {
+  --color-brand: #14463a;        /* deep emerald — primary */
+  --color-brand-700: #0f3a2f;
+  --color-brand-300: #5c8a7c;
+  --color-accent: #c79a4b;       /* warm brass — accent */
+  --color-accent-600: #b1872f;
+  --color-cream: #f7f3ec;        /* page background */
+  --color-ink: #1c1b18;          /* body text */
+  --color-muted: #6b6760;
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --background: #f7f3ec;
+  --foreground: #1c1b18;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+/* Smooth anchor scrolling for in-page nav links */
+html {
+  scroll-behavior: smooth;
+}
