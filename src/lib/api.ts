@@ -1,8 +1,14 @@
 // Typed client for the Django REST backend.
 // Server Components call these with `fetch` (no-store) so data is always fresh.
 
+// Base URL of the Django backend. Set NEXT_PUBLIC_API_URL to the public API
+// URL (e.g. a tunnel) when sharing the site; defaults to local dev otherwise.
 export const API_BASE =
   process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+
+function apiBase(): string {
+  return API_BASE;
+}
 
 export type Service = {
   id: number;
@@ -54,7 +60,7 @@ type Paginated<T> = { count: number; results: T[] };
 
 async function getJSON<T>(path: string): Promise<T | null> {
   try {
-    const res = await fetch(`${API_BASE}/api/k6${path}`, { cache: "no-store" });
+    const res = await fetch(`${apiBase()}/api/k6${path}`, { cache: "no-store" });
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
@@ -106,7 +112,7 @@ export type SubmitResult =
 
 async function postLead(path: string, payload: LeadPayload): Promise<SubmitResult> {
   try {
-    const res = await fetch(`${API_BASE}/api/k6${path}`, {
+    const res = await fetch(`${apiBase()}/api/k6${path}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),

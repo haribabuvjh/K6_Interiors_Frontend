@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Allow the dev server to be opened via tunnel domains (Cloudflare/ngrok).
+  allowedDevOrigins: ["*.trycloudflare.com", "*.ngrok-free.app"],
 };
 
 export default nextConfig;
