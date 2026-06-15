@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import HeroCarousel from "./HeroCarousel";
 
 export default function Hero() {
   return (
@@ -76,25 +77,13 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Stylised room preview built purely with CSS (no copied imagery). */}
+        {/* Auto-rotating hero image panel (changes every 3s). */}
         <motion.div
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-gradient-to-br from-brand to-brand-700 p-6 shadow-xl"
         >
-          <div className="flex h-full flex-col justify-between rounded-2xl border border-cream/15 p-6">
-            <div className="h-28 rounded-xl bg-accent/80" />
-            <div className="grid grid-cols-3 gap-3">
-              <div className="h-24 rounded-xl bg-cream/15" />
-              <div className="h-24 rounded-xl bg-cream/25" />
-              <div className="h-24 rounded-xl bg-cream/15" />
-            </div>
-            <div className="rounded-xl bg-cream/90 p-4">
-              <div className="h-3 w-2/3 rounded bg-brand/30" />
-              <div className="mt-2 h-3 w-1/2 rounded bg-brand/20" />
-            </div>
-          </div>
+          <HeroCarousel />
         </motion.div>
       </div>
     </section>

@@ -41,10 +41,17 @@ export default function ContactPage() {
                 Reach us
               </h3>
               <ul className="mt-4 space-y-3 text-sm text-muted">
-                <li><span className="font-medium text-ink">Phone:</span> +91 90000 00000</li>
-                <li><span className="font-medium text-ink">Email:</span> hello@k6interiors.com</li>
+                <li>
+                  <span className="font-medium text-ink">Phone:</span>{" "}
+                  <a href="tel:+918608177061" className="hover:text-brand">+91 86081 77061</a>,{" "}
+                  <a href="tel:+916383956066" className="hover:text-brand">+91 63839 56066</a>
+                </li>
+                <li>
+                  <span className="font-medium text-ink">Email:</span>{" "}
+                  <a href="mailto:admin@k6interiors.in" className="hover:text-brand">admin@k6interiors.in</a>
+                </li>
                 <li><span className="font-medium text-ink">Cities:</span> Chennai · Bengaluru · Hyderabad</li>
-                <li><span className="font-medium text-ink">Hours:</span> Mon–Sat, 10am – 7pm</li>
+                <li><span className="font-medium text-ink">Hours:</span> Mon–Sun, 10am – 8pm</li>
               </ul>
             </div>
             <div className="rounded-2xl bg-brand p-6 text-cream">

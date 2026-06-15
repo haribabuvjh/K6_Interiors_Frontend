@@ -42,9 +42,9 @@ export default function LeadForm({
       if (d) payload.preferred_date = d;
     }
 
-    if (!payload.name || !payload.phone) {
+    if (!payload.name || !payload.phone || !payload.email) {
       setStatus("error");
-      setError("Name and phone are required.");
+      setError("Name, phone and email are required.");
       return;
     }
 
@@ -85,7 +85,7 @@ export default function LeadForm({
       <div className="grid gap-4 sm:grid-cols-2">
         <input name="name" placeholder="Full name *" className={inputClass} required />
         <input name="phone" placeholder="Phone *" className={inputClass} required />
-        <input name="email" type="email" placeholder="Email" className={inputClass} />
+        <input name="email" type="email" placeholder="Email *" className={inputClass} required />
         <input name="city" placeholder="City" className={inputClass} />
         <select name="service_type" className={inputClass} defaultValue="">
           <option value="" disabled>Service interested in</option>

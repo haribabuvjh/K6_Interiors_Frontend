@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ScrollTopLink from "./ScrollTopLink";
 
 const links = [
   { href: "/", label: "Home" },
@@ -30,14 +31,14 @@ export default function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-        <Link href="/" className="flex items-center gap-2">
+        <ScrollTopLink className="flex items-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-brand font-display text-base font-bold tracking-tight text-cream">
             K6
           </span>
           <span className="font-display text-xl font-semibold text-brand">
             K6 Interiors
           </span>
-        </Link>
+        </ScrollTopLink>
 
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((l) => (

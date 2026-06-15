@@ -1,18 +1,19 @@
 import Link from "next/link";
+import ScrollTopLink from "./ScrollTopLink";
 
 export default function Footer() {
   return (
     <footer className="bg-brand text-cream/90">
       <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-2">
+          <ScrollTopLink className="flex items-center gap-2 transition-opacity hover:opacity-80">
             <span className="grid h-9 w-9 place-items-center rounded-lg bg-accent font-display text-base font-bold tracking-tight text-brand">
               K6
             </span>
             <span className="font-display text-xl font-semibold text-cream">
               K6 Interiors
             </span>
-          </div>
+          </ScrollTopLink>
           <p className="mt-4 max-w-xs text-sm text-cream/70">
             Interiors that feel like home. Modular kitchens, wardrobes and
             full-home design, built end to end.
@@ -49,8 +50,9 @@ export default function Footer() {
             Get in touch
           </h4>
           <ul className="mt-4 space-y-2 text-sm text-cream/80">
-            <li>hello@k6interiors.com</li>
-            <li>+91 90000 00000</li>
+            <li><a href="mailto:admin@k6interiors.in" className="hover:text-cream">admin@k6interiors.in</a></li>
+            <li><a href="tel:+918608177061" className="hover:text-cream">+91 86081 77061</a></li>
+            <li><a href="tel:+916383956066" className="hover:text-cream">+91 63839 56066</a></li>
             <li>Chennai · Bengaluru · Hyderabad</li>
           </ul>
         </div>
