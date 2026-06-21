@@ -8,6 +8,7 @@ import ScrollTopLink from "./ScrollTopLink";
 const links = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/services#book-service", label: "Book Service" },
   { href: "/portfolio", label: "Portfolio" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
