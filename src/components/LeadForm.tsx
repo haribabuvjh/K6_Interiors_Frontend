@@ -6,12 +6,15 @@ import {
   submitConsultation,
   type LeadPayload,
 } from "@/lib/api";
+import WaxSeal from "./WaxSeal";
 
 const SERVICES = ["Modular Kitchen", "Wardrobe", "Living Room", "Bedroom", "Full Home"];
 const BUDGETS = ["Under ₹1L", "₹1L – ₹3L", "₹3L – ₹6L", "₹6L+"];
 
+// Editorial "ledger" field — filled cream surface with a single hairline that
+// turns brass on focus (keeps a visible 2px focus border for accessibility).
 const inputClass =
-  "w-full rounded-lg border border-ink/15 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20";
+  "w-full rounded-none border-0 border-b border-ink/20 bg-cream-100 px-1 py-3 text-sm text-ink outline-none transition-colors placeholder:text-muted/70 focus:border-b-2 focus:border-accent";
 
 export default function LeadForm({
   variant = "contact",
@@ -66,12 +69,12 @@ export default function LeadForm({
 
   if (status === "ok") {
     return (
-      <div className="rounded-2xl border border-brand/20 bg-white p-8 text-center">
-        <div className="mx-auto grid h-12 w-12 place-items-center rounded-full bg-brand text-cream">
-          ✓
+      <div className="border border-ink/10 bg-cream-100 p-10 text-center">
+        <div className="flex justify-center">
+          <WaxSeal size={64} />
         </div>
-        <h3 className="mt-4 font-display text-xl font-semibold text-brand">
-          Thank you!
+        <h3 className="mt-6 font-display text-2xl font-medium italic text-brand">
+          Thank you
         </h3>
         <p className="mt-2 text-muted">
           We&apos;ve received your details and will reach out shortly.
@@ -81,17 +84,17 @@ export default function LeadForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <input name="name" placeholder="Full name *" className={inputClass} required />
-        <input name="phone" placeholder="Phone *" className={inputClass} required />
-        <input name="email" type="email" placeholder="Email *" className={inputClass} required />
-        <input name="city" placeholder="City" className={inputClass} />
-        <select name="service_type" className={inputClass} defaultValue="">
+    <form onSubmit={onSubmit} className="space-y-6">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <input name="name" placeholder="Full name *" aria-label="Full name" aria-required="true" aria-invalid={status === "error" || undefined} className={inputClass} required />
+        <input name="phone" placeholder="Phone *" aria-label="Phone number" aria-required="true" aria-invalid={status === "error" || undefined} className={inputClass} required />
+        <input name="email" type="email" placeholder="Email *" aria-label="Email address" aria-required="true" aria-invalid={status === "error" || undefined} className={inputClass} required />
+        <input name="city" placeholder="City" aria-label="City" className={inputClass} />
+        <select name="service_type" aria-label="Service interested in" className={inputClass} defaultValue="">
           <option value="" disabled>Service interested in</option>
           {SERVICES.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
-        <select name="budget" className={inputClass} defaultValue="">
+        <select name="budget" aria-label="Budget range" className={inputClass} defaultValue="">
           <option value="" disabled>Budget range</option>
           {BUDGETS.map((b) => <option key={b} value={b}>{b}</option>)}
         </select>
@@ -109,17 +112,18 @@ export default function LeadForm({
         name="message"
         rows={4}
         placeholder="Tell us about your project"
+        aria-label="Tell us about your project"
         className={inputClass}
       />
 
       {status === "error" && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className="text-sm text-red-700">{error}</p>
       )}
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-full rounded-full bg-brand px-6 py-3 font-semibold text-cream transition-colors hover:bg-brand-700 disabled:opacity-60 sm:w-auto"
+        className="rounded-full bg-brand px-7 py-3 font-semibold text-cream transition-colors hover:bg-brand-700 disabled:opacity-60"
       >
         {status === "loading"
           ? "Sending…"

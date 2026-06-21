@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getPost } from "@/lib/api";
+import PhotoPlate from "@/components/PhotoPlate";
+import MeasureLine from "@/components/MeasureLine";
 import CtaBand from "@/components/CtaBand";
 
 type Params = { slug: string };
@@ -41,35 +43,41 @@ export default async function BlogPostPage({
 
   return (
     <>
-      <article className="mx-auto max-w-3xl px-5 py-16">
+      <article className="mx-auto max-w-3xl px-5 pb-16 pt-12">
         <Link
           href="/blog"
-          className="text-sm font-semibold text-brand hover:underline"
+          className="label-caps text-ink/50 transition-colors hover:text-brand"
         >
-          ← Back to blog
+          ← Back to journal
         </Link>
 
-        <p className="mt-6 text-xs font-semibold uppercase tracking-wide text-accent-600">
+        <p className="mt-8 label-caps">
           {formatDate(post.created_at)}
           {post.author ? ` · ${post.author}` : ""}
         </p>
-        <h1 className="mt-2 font-display text-3xl font-semibold text-brand sm:text-4xl">
+        <MeasureLine className="mt-3 w-14" />
+        <h1 className="mt-5 font-display text-display-2 font-normal leading-[1.05] tracking-tight text-brand">
           {post.title}
         </h1>
 
         {post.cover_image && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={post.cover_image}
-            alt={post.title}
-            className="mt-8 aspect-[16/9] w-full rounded-2xl object-cover"
-          />
+          <div className="mt-10">
+            <PhotoPlate
+              src={post.cover_image}
+              alt={post.title}
+              ratio="16 / 9"
+              parallax={false}
+              priority
+            />
+          </div>
         )}
 
         {/* Content is plain text from the admin; preserve line breaks. */}
-        <div className="mt-8 space-y-4 whitespace-pre-line text-ink/90 leading-relaxed">
+        <div className="dropcap mt-10 whitespace-pre-line text-lg leading-relaxed text-ink/85">
           {post.content}
         </div>
+
+        <MeasureLine className="mt-14 w-full" />
       </article>
 
       <CtaBand />

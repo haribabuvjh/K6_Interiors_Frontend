@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getProjects } from "@/lib/api";
+import PageHeader from "@/components/PageHeader";
 import Portfolio from "@/components/Portfolio";
 import CtaBand from "@/components/CtaBand";
 
@@ -12,16 +13,13 @@ export default async function PortfolioPage() {
   const projects = await getProjects();
   return (
     <>
-      <section className="bg-brand">
-        <div className="mx-auto max-w-6xl px-5 py-16">
-          <h1 className="font-display text-4xl font-semibold text-cream sm:text-5xl">
-            Portfolio
-          </h1>
-          <p className="mt-3 max-w-xl text-cream/80">
-            Spaces we&apos;ve designed and built for homeowners.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        kicker="Selected Work"
+        title="Spaces we've designed &"
+        accentWord="built."
+        standfirst="A gallery of real homes — kitchens, wardrobes and living spaces designed and built by K6 Interiors."
+        photo="/hero-4.jpg"
+      />
       <Portfolio projects={projects} />
       <CtaBand />
     </>

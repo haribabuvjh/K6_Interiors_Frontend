@@ -41,6 +41,25 @@ export type Testimonial = {
   created_at: string;
 };
 
+export type HeroImage = {
+  id: number;
+  image: string;
+  caption: string;
+  order: number;
+};
+
+export type ServiceType = {
+  id: number;
+  name: string;
+  description: string;
+};
+
+export type MaintenanceType = {
+  id: number;
+  name: string;
+  description: string;
+};
+
 export type PostListItem = {
   id: number;
   title: string;
@@ -71,6 +90,18 @@ async function getJSON<T>(path: string): Promise<T | null> {
 
 export async function getServices(): Promise<Service[]> {
   return (await getJSON<Service[]>("/services/")) ?? [];
+}
+
+export async function getHeroImages(): Promise<HeroImage[]> {
+  return (await getJSON<HeroImage[]>("/hero-images/")) ?? [];
+}
+
+export async function getServiceTypes(): Promise<ServiceType[]> {
+  return (await getJSON<ServiceType[]>("/service-types/")) ?? [];
+}
+
+export async function getMaintenanceTypes(): Promise<MaintenanceType[]> {
+  return (await getJSON<MaintenanceType[]>("/maintenance-types/")) ?? [];
 }
 
 export async function getProjects(category?: string): Promise<Project[]> {
@@ -127,3 +158,35 @@ async function postLead(path: string, payload: LeadPayload): Promise<SubmitResul
 
 export const submitContact = (p: LeadPayload) => postLead("/contact/", p);
 export const submitConsultation = (p: LeadPayload) => postLead("/consultation/", p);
+
+// --- Service / maintenance booking ----------------------------------------
+
+export type ServiceBookingPayload = {
+  name: string;
+  phone: string;
+  email: string;
+  city?: string;
+  address?: string;
+  service_type: number;
+  maintenance_type: number;
+  preferred_date: string;
+  time_slot: string;
+  message?: string;
+};
+
+export async function submitServiceBooking(
+  p: ServiceBookingPayload
+): Promise<SubmitResult> {
+  try {
+    const res = await fetch(`${apiBase()}/api/k6/service-booking/`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(p),
+    });
+    if (res.ok) return { ok: true };
+    const data = await res.json().catch(() => ({}));
+    return { ok: false, errors: data ?? "Something went wrong." };
+  } catch {
+    return { ok: false, errors: "Could not reach the server. Is the backend running?" };
+  }
+}

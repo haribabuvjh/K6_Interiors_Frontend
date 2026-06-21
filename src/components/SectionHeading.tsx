@@ -1,5 +1,9 @@
-import Reveal from "./Reveal";
+import PlateHeading from "./PlateHeading";
 
+/**
+ * Back-compatible shim. The site now uses <PlateHeading> directly, but this
+ * keeps any older call sites working by forwarding the eyebrow → kicker.
+ */
 export default function SectionHeading({
   eyebrow,
   title,
@@ -12,20 +16,15 @@ export default function SectionHeading({
   center?: boolean;
 }) {
   return (
-    <Reveal className={center ? "text-center" : ""}>
-      {eyebrow && (
-        <span className="text-sm font-semibold uppercase tracking-wide text-accent-600">
-          {eyebrow}
-        </span>
-      )}
-      <h2 className="mt-2 font-display text-3xl font-semibold text-brand sm:text-4xl">
-        {title}
-      </h2>
+    <div>
+      <PlateHeading kicker={eyebrow ?? ""} title={title} center={center} />
       {subtitle && (
-        <p className={`mt-3 text-muted ${center ? "mx-auto max-w-2xl" : "max-w-2xl"}`}>
+        <p
+          className={`mt-4 text-ink/70 ${center ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}`}
+        >
           {subtitle}
         </p>
       )}
-    </Reveal>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 import type { Service } from "@/lib/api";
 import Reveal from "./Reveal";
-import SectionHeading from "./SectionHeading";
+import PlateHeading from "./PlateHeading";
 
 // Fallback content if the API returns nothing (e.g. backend not seeded yet).
 const FALLBACK: Pick<Service, "name" | "description" | "starting_price">[] = [
@@ -23,32 +23,53 @@ export default function Services({ services }: { services: Service[] }) {
   const items = services.length ? services : FALLBACK;
 
   return (
-    <section id="services" className="mx-auto max-w-6xl px-5 py-20">
-      <SectionHeading
-        eyebrow="What we do"
-        title="Interior services, designed to last"
-        subtitle="One team for design, manufacturing and installation — so your project stays seamless from first sketch to handover."
+    <section id="services" className="section-y mx-auto max-w-6xl px-5">
+      <PlateHeading
+        index="01"
+        kicker="Services"
+        title="Interior services, designed to"
+        accentWord="last."
+        meta="Design · Manufacture · Install"
       />
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {items.map((s, i) => (
-          <Reveal key={s.name} delay={i * 0.05}>
-            <div className="group h-full rounded-2xl border border-ink/10 bg-white p-6 transition-shadow hover:shadow-lg">
-              <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand/10 font-display text-xl font-semibold text-brand transition-colors group-hover:bg-brand group-hover:text-cream">
-                {s.name.charAt(0)}
-              </div>
-              <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                {s.name}
-              </h3>
-              <p className="mt-2 text-sm text-muted">{s.description}</p>
-              {inr(s.starting_price) && (
-                <p className="mt-4 text-sm font-semibold text-brand">
-                  Starting {inr(s.starting_price)}
+      <div className="mt-12">
+        {items.map((s, i) => {
+          const price = inr(s.starting_price);
+          return (
+            <Reveal key={s.name} delay={(i % 4) * 0.05}>
+              <div className="group relative grid grid-cols-1 gap-3 border-t border-ink/12 py-8 transition-colors hover:bg-brand/[0.05] md:grid-cols-12 md:items-center md:gap-6 md:px-4">
+                <span className="pointer-events-none absolute left-0 top-0 hidden h-full w-0.5 origin-top scale-y-0 bg-accent transition-transform duration-300 group-hover:scale-y-100 md:block" />
+                <div className="flex items-baseline gap-4 md:col-span-5">
+                  <span className="font-display text-lg tabular-nums text-accent-600">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-display text-2xl text-brand transition-transform duration-300 md:group-hover:translate-x-1">
+                    {s.name}
+                  </h3>
+                </div>
+
+                <p className="text-sm leading-relaxed text-ink/70 md:col-span-4">
+                  {s.description}
                 </p>
-              )}
-            </div>
-          </Reveal>
-        ))}
+
+                <div className="flex items-center justify-between gap-3 md:col-span-3 md:justify-end">
+                  {price && (
+                    <span className="text-right">
+                      <span className="label-caps block">From</span>
+                      <span className="font-display text-lg tabular-nums text-brand">
+                        {price}
+                      </span>
+                    </span>
+                  )}
+                  <span className="text-accent opacity-0 transition-all duration-300 md:-translate-x-2 md:group-hover:translate-x-0 md:group-hover:opacity-100">
+                    →
+                  </span>
+                </div>
+              </div>
+            </Reveal>
+          );
+        })}
+        <div className="border-t border-ink/12" />
       </div>
     </section>
   );

@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
-import SectionHeading from "./SectionHeading";
+import MeasureLine from "./MeasureLine";
+import PlateHeading from "./PlateHeading";
 
 const steps = [
   { n: "01", title: "Free consultation", text: "Tell us your space, style and budget. We listen and advise." },
@@ -10,24 +11,40 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-white">
-      <div className="mx-auto max-w-6xl px-5 py-20">
-        <SectionHeading
-          eyebrow="How it works"
-          title="A simple path to your new space"
-          center
+    <section className="grain-overlay relative isolate overflow-hidden bg-brand-700">
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(120% 90% at 50% 0%, transparent 40%, var(--color-brand-900) 100%)",
+        }}
+      />
+      <div className="section-y relative mx-auto max-w-6xl px-5">
+        <PlateHeading
+          index="02"
+          kicker="The Process"
+          title="A simple path to your"
+          accentWord="new space"
+          meta="From first sketch to handover"
+          tone="cream"
         />
-        <div className="mt-12 grid gap-6 md:grid-cols-4">
+
+        <div className="relative mt-16 grid gap-10 md:grid-cols-4 md:gap-6">
+          {/* connecting brass line (desktop) */}
+          <MeasureLine className="absolute inset-x-0 top-7 hidden md:block" tone="brass" />
+
           {steps.map((s, i) => (
             <Reveal key={s.n} delay={i * 0.08}>
-              <div className="relative h-full rounded-2xl bg-cream p-6">
-                <span className="font-display text-4xl font-semibold text-accent/60">
-                  {s.n}
+              <div className="relative border-l border-cream/20 pl-5 md:border-l-0 md:pl-0">
+                <span className="relative inline-block bg-brand-700 pr-3 font-display text-6xl font-light leading-none text-cream md:pr-4">
+                  <span className="text-accent">{s.n}</span>
                 </span>
-                <h3 className="mt-3 font-display text-lg font-semibold text-brand">
+                <h3 className="mt-5 font-display text-xl font-medium text-cream">
                   {s.title}
                 </h3>
-                <p className="mt-2 text-sm text-muted">{s.text}</p>
+                <p className="mt-2 text-sm leading-relaxed text-cream/70">
+                  {s.text}
+                </p>
               </div>
             </Reveal>
           ))}

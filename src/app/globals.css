@@ -1,22 +1,39 @@
 @import "tailwindcss";
 
 /*
-  K6 Interiors — brand theme.
-  Original palette (deep emerald + warm brass on cream). Not copied from any
-  reference site; tweak these tokens to re-skin the whole site.
+  K6 Interiors — "The Folio" design system.
+  A warm editorial interiors monograph: cream paper ruled in brass, photography
+  presented as numbered plates. Cream is the dominant canvas; emerald appears
+  only as deliberate full-bleed "dark spreads"; brass is jewelry (rules, ticks,
+  small-caps labels) — never large fills. Tweak these tokens to re-skin the site.
 */
 @theme {
+  /* --- brand palette (unchanged) --- */
   --color-brand: #14463a;        /* deep emerald — primary */
   --color-brand-700: #0f3a2f;
   --color-brand-300: #5c8a7c;
-  --color-accent: #c79a4b;       /* warm brass — accent */
-  --color-accent-600: #b1872f;
-  --color-cream: #f7f3ec;        /* page background */
+  --color-brand-900: #0a2820;    /* depth for emerald vignettes */
+  --color-accent: #c79a4b;       /* warm brass — rules/ticks/fills (NON-text) */
+  --color-accent-600: #b1872f;   /* brass for TEXT (AA-safe on cream) */
+  --color-cream: #f7f3ec;        /* page background — the paper */
+  --color-cream-100: #fbf8f2;    /* ultra-light layering surface (replaces white) */
+  --color-cream-200: #efe9df;    /* ~3% darker paper for recto/verso alternation */
   --color-ink: #1c1b18;          /* body text */
   --color-muted: #6b6760;
 
   --font-display: var(--font-fraunces);
   --font-sans: var(--font-inter);
+
+  /* fluid editorial type scale */
+  --text-display-1: clamp(2.75rem, 8vw, 6.5rem);   /* hero */
+  --text-display-2: clamp(2rem, 4.5vw, 3.5rem);    /* section / page titles */
+  --text-display-3: clamp(1.5rem, 2.5vw, 2rem);    /* sub-display */
+
+  /* flatten the page — tiny rounding only on photo plates */
+  --radius-plate: 0.1875rem;
+
+  /* one tactile shadow, used sparingly (photo plates only) */
+  --shadow-craft: 0 1px 2px rgb(28 27 24 / 0.05), 0 14px 30px -14px rgb(20 70 58 / 0.22);
 }
 
 :root {
@@ -28,9 +45,78 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  font-optical-sizing: auto; /* exploit Fraunces' optical sizing */
+}
+
+/* Paper-grain substrate — whisper-quiet, fixed, behind all content. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* Smooth anchor scrolling for in-page nav links */
 html {
   scroll-behavior: smooth;
+}
+
+/* ---- Editorial utilities ---------------------------------------------- */
+
+/* Small-caps brass label (AA-safe brass-for-text). */
+.label-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--color-accent-600);
+}
+
+/* Generous, disciplined section rhythm. */
+.section-y {
+  padding-block: clamp(5rem, 10vw, 8rem);
+}
+
+/* Drop-cap for blog / about intros. */
+.dropcap::first-letter {
+  font-family: var(--font-fraunces);
+  font-weight: 500;
+  font-size: 3.6rem;
+  line-height: 0.8;
+  float: left;
+  margin: 0.1em 0.14em 0 0;
+  color: var(--color-brand);
+}
+
+/* Film-grain overlay for emerald "dark spreads" (element must be relative). */
+.grain-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Materials marquee. */
+@keyframes k6-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: k6-marquee 42s linear infinite;
+}
+.marquee-track:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  body::before { display: none; }
+  .animate-marquee { animation: none; }
 }
