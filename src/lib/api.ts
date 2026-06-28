@@ -2,9 +2,11 @@
 // Server Components call these with `fetch` (no-store) so data is always fresh.
 
 // Base URL of the Django backend. Set NEXT_PUBLIC_API_URL to the public API
-// URL (e.g. a tunnel) when sharing the site; defaults to local dev otherwise.
+// URL for the environment you're building. The fallback is the production
+// backend (not localhost) so a forgotten env var degrades to a working site
+// rather than dead localhost calls; local dev overrides it via .env.local.
 export const API_BASE =
-  process.env.NEXT_PUBLIC_API_URL ?? "http://127.0.0.1:8000";
+  process.env.NEXT_PUBLIC_API_URL ?? "https://k6-interiors-backend.onrender.com";
 
 function apiBase(): string {
   return API_BASE;
@@ -79,11 +81,17 @@ type Paginated<T> = { count: number; results: T[] };
 
 async function getJSON<T>(path: string): Promise<T | null> {
   try {
-    const res = await fetch(`${apiBase()}/api/k6${path}`, { cache: "no-store" });
+    // 8s cap so a sleeping free-tier backend (~50s cold start) aborts fast
+    // into the fallback path instead of blocking SSR past Vercel's function
+    // time limit (which would 504 with no page at all).
+    const res = await fetch(`${apiBase()}/api/k6${path}`, {
+      cache: "no-store",
+      signal: AbortSignal.timeout(8000),
+    });
     if (!res.ok) return null;
     return (await res.json()) as T;
   } catch {
-    // Backend not running / network error — let the UI fall back gracefully.
+    // Backend not running / network error / timeout — fall back gracefully.
     return null;
   }
 }
